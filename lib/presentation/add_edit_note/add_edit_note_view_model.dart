@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_note_app/domain/model/note.dart';
 import 'package:flutter_note_app/domain/repository/note_repository.dart';
 import 'package:flutter_note_app/presentation/add_edit_note/add_edit_note_event.dart';
+import 'package:flutter_note_app/ui/colors.dart';
 
 class AddEditNoteViewModel with ChangeNotifier {
   final NoteRepository repository;
 
-  int _color = Colors.orange.value;
+  int _color = roseBud.value;
 
   int get color => _color;
 
@@ -20,7 +21,7 @@ class AddEditNoteViewModel with ChangeNotifier {
     );
   }
 
-  Future<void> _changeColor(int id) async {
+  Future<void> _changeColor(int color) async {
     _color = color;
     notifyListeners();
   }
