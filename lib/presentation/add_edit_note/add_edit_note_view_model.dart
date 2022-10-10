@@ -34,6 +34,11 @@ class AddEditNoteViewModel with ChangeNotifier {
   }
 
   Future<void> _saveNote(int? id, String title, String content) async {
+    if (title.isEmpty || content.isEmpty) {
+      _eventController.add(AddEditNoteUiEvent.showSnackBar('제목이나 내용이 비어 있습니다'));
+      return;
+    }
+
     if (id == null) {
       repository.insertNote(
         Note(

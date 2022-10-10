@@ -33,6 +33,11 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
   void initState() {
     super.initState();
 
+    if (widget.note != null) {
+      _titleController.text = widget.note!.title;
+      _contentController.text = widget.note!.content;
+    }
+
     Future.microtask(() {
       final viewModel = context.read<AddEditNoteViewModel>();
 
@@ -41,6 +46,9 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
           Navigator.pop(context,
               true); /* 이벤트가 동작 했는지 알아보기 위해 true 값이 넘어가면 savenote 로 동작을 했다는 의미*/
           // save 버튼을 눌렀는지, 단순히 뒤로가기 버튼을 눌러서 전 화면으로 돌아갔는지를 구분하기 위함.
+        }, showSnackBar: (String message) {
+          final snackBar = SnackBar(content: Text(message));
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         });
       });
     });
@@ -60,12 +68,6 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          if (_titleController.text.isEmpty ||
-              _contentController.text.isEmpty) {
-            const snackBar = SnackBar(content: Text('제목이나 내용이 비어 있습니다'));
-            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          }
-
           viewModel.onEvent(
             AddEditNoteEvent.saveNote(
               widget.note == null ? null : widget.note!.id,
