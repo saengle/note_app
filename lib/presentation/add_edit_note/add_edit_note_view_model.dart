@@ -35,7 +35,8 @@ class AddEditNoteViewModel with ChangeNotifier {
 
   Future<void> _saveNote(int? id, String title, String content) async {
     if (title.isEmpty || content.isEmpty) {
-      _eventController.add(AddEditNoteUiEvent.showSnackBar('제목이나 내용이 비어 있습니다'));
+      _eventController
+          .add(const AddEditNoteUiEvent.showSnackBar('제목이나 내용이 비어 있습니다'));
       return;
     }
 
@@ -57,6 +58,6 @@ class AddEditNoteViewModel with ChangeNotifier {
             timestamp: DateTime.now().millisecondsSinceEpoch),
       );
     }
-    _eventController.add(AddEditNoteUiEvent.saveNote());
+    _eventController.add(const AddEditNoteUiEvent.saveNote());
   }
 }
