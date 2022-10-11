@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        unselectedWidgetColor: Colors.white,
         primaryColor: Colors.white,
         backgroundColor: darkGray,
         canvasColor: darkGray,
@@ -34,6 +35,10 @@ class MyApp extends StatelessWidget {
                   backgroundColor: Colors.white,
                   foregroundColor: darkGray,
                 ),
+        textTheme: Theme.of(context).textTheme.apply(
+              displayColor: Colors.white,
+              bodyColor: Colors.white,
+            ),
         appBarTheme:
             Theme.of(context).appBarTheme.copyWith(backgroundColor: darkGray),
       ),

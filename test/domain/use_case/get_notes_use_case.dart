@@ -18,8 +18,10 @@ void main() {
 
     // 동작을 정의해줌
     when(repository.getNotes()).thenAnswer((_) async => [
-          Note(title: 'title', content: 'content', timestamp: 0, color: 1),
-          Note(title: 'title2', content: 'content2', timestamp: 2, color: 2),
+          const Note(
+              title: 'title', content: 'content', timestamp: 0, color: 1),
+          const Note(
+              title: 'title2', content: 'content2', timestamp: 2, color: 2),
         ]);
 
     List<Note> result =
